@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:sakk2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Canvas>
-        </Canvas>
+    <Grid Name="scene">
+        <Canvas Name="sakktabla" Height="320" Width="320" Margin="240,57,240,57"></Canvas>
     </Grid>
 </Window>

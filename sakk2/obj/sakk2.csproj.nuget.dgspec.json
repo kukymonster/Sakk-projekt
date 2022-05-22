@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\C#\\sakk2\\sakk2\\sakk2.csproj": {}
+    "E:\\C#\\sakk2\\Sakk-projekt\\sakk2\\sakk2.csproj": {}
   },
   "projects": {
-    "E:\\C#\\sakk2\\sakk2\\sakk2.csproj": {
+    "E:\\C#\\sakk2\\Sakk-projekt\\sakk2\\sakk2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\C#\\sakk2\\sakk2\\sakk2.csproj",
+        "projectUniqueName": "E:\\C#\\sakk2\\Sakk-projekt\\sakk2\\sakk2.csproj",
         "projectName": "sakk2",
-        "projectPath": "E:\\C#\\sakk2\\sakk2\\sakk2.csproj",
+        "projectPath": "E:\\C#\\sakk2\\Sakk-projekt\\sakk2\\sakk2.csproj",
         "packagesPath": "C:\\Users\\Szép-Szabó Bence\\.nuget\\packages\\",
-        "outputPath": "E:\\C#\\sakk2\\sakk2\\obj\\",
+        "outputPath": "E:\\C#\\sakk2\\Sakk-projekt\\sakk2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Szép-Szabó Bence\\AppData\\Roaming\\NuGet\\NuGet.Config",
