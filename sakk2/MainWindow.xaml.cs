@@ -90,13 +90,6 @@ namespace sakk2
                 scene.Children.Add(betu);
                 scene.Children.Add(szam);
             }
-            /*for (int i = 'A'; i < 'I'; i++)
-            {
-                Label betu = new Label();
-                betu.Content = i;
-                betu.Margin = new Thickness(217, 63 + 40 * i, 0, 0);
-                scene.Children.Add(betu);
-            }*/
         }
     }
 }
