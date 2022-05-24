@@ -21,16 +21,151 @@ namespace sakk2
     public partial class MainWindow : Window
     {
         static Rectangle[,] cellak = new Rectangle[8, 8];
+        static Label[,] cimkek = new Label[8, 8];
+        static object figura = new object();
         public MainWindow()
         {
             InitializeComponent();
             TablaGeneralas();
         }
-
-        private void Click(object sender, MouseButtonEventArgs e)
+        private void Click(object sender, MouseEventArgs e)
         {
-            
+            try
+            {
+                Refresh();
+                object kuldo = sender;
+                figura = figurak.SelectedItem;
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if(cimkek[i,j] == kuldo)
+                        {
+                            cimkek[i,j].Content = figura;
+                            teszt1.Content = figura.ToString();
+                            if(figura.ToString().Contains("♙"))
+                            {
+                                cellak[i, j + 1].Fill = Brushes.Red;
+                                cellak[i, j + 2].Fill = Brushes.Red;
+                            }
+                            else if (figura.ToString().Contains("♟"))
+                            {
+                                cellak[i, j - 1].Fill = Brushes.Red;
+                                cellak[i, j - 2].Fill = Brushes.Red;
+                            }
+                            else if (figura.ToString().Contains("♖"))
+                            {
+                                for (int k = 0; k < 8; k++)
+                                {
+                                    cellak[k, j].Fill = Brushes.Red;
+                                    cellak[i, k].Fill = Brushes.Red;
+                                }
+                            }
+                            else if (figura.ToString().Contains("♗"))
+                            {
+                                //javítás kell!
+                                for (int k = 0; k <= 8; k++)
+                                {
+                                    if(validLepes(i-k,j-k))
+                                        cellak[i - k, j - k].Fill = Brushes.Red;
+                                    if(validLepes(i+k,j+k))
+                                        cellak[i + k, j + k].Fill = Brushes.Red;
+                                    if(validLepes(i+k,j-k))
+                                        cellak[i + k, j - k].Fill = Brushes.Red;
+                                    if(validLepes(i-k,j+k))
+                                        cellak[i - k, j + k].Fill = Brushes.Red;
+                                }
+                            }
+                            else if (figura.ToString().Contains("♘"))
+                            {
+                                //javítás kell!
+                                if(validLepes(i + 2, j + 1))
+                                    cellak[i + 2, j + 1].Fill = Brushes.Red;
+                                if (validLepes(i + 1, j + 2))
+                                    cellak[i + 1, j + 2].Fill = Brushes.Red;
+                                if (validLepes(i - 1, j + 2))
+                                    cellak[i - 1, j + 2].Fill = Brushes.Red;
+                                if (validLepes(i - 2, j + 1))
+                                    cellak[i - 2, j + 1].Fill = Brushes.Red;
+                                if (validLepes(i - 2, j - 1))
+                                    cellak[i - 2, j - 1].Fill = Brushes.Red;
+                                if (validLepes(i - 1, j - 2))
+                                    cellak[i - 1, j - 2].Fill = Brushes.Red;
+                                if (validLepes(i + 1, j - 2))
+                                    cellak[i + 1, j - 2].Fill = Brushes.Red;
+                                if (validLepes(i + 2, j - 1))
+                                    cellak[i + 2, j - 1].Fill = Brushes.Red;
+                            }
+                            else if (figura.ToString().Contains("♕"))
+                            {
+                                for (int k = 0; k < 8; k++)
+                                {
+                                    //javítani kell!
+                                    if (validLepes(k, j))
+                                        cellak[k, j].Fill = Brushes.Red;
+                                    if (validLepes(i,k))
+                                        cellak[i, k].Fill = Brushes.Red;
+                                    if(validLepes(i + k, j-k))
+                                        cellak[i - k, j - k].Fill = Brushes.Red;
+                                    if (validLepes(i + k, j+k))
+                                        cellak[i + k, j + k].Fill = Brushes.Red;
+                                    if (validLepes(i + k, j-k))
+                                        cellak[i + k, j - k].Fill = Brushes.Red;
+                                    if (validLepes(i - k, j+k))
+                                        cellak[i - k, j + k].Fill = Brushes.Red;
+                                }
+                            }
+                            else if (figura.ToString().Contains("♔"))
+                            {
+                                //javítás kell!
+                                if (validLepes(i + 1, j))
+                                    cellak[i + 1, j].Fill = Brushes.Red;
+                                if (validLepes(i + 1, j+1))
+                                    cellak[i + 1, j+1].Fill = Brushes.Red;
+                                if (validLepes(i + 1, j-1))
+                                    cellak[i + 1, j-1].Fill = Brushes.Red;
+                                if (validLepes(i - 1, j))
+                                    cellak[i - 1, j].Fill = Brushes.Red;
+                                if (validLepes(i - 1, j+1))
+                                    cellak[i - 1, j+1].Fill = Brushes.Red;
+                                if (validLepes(i - 1, j-1))
+                                    cellak[i - 1, j-1].Fill = Brushes.Red;
+                                if (validLepes(i, j+1))
+                                    cellak[i, j+1].Fill = Brushes.Red;
+                                if (validLepes(i, j-1))
+                                    cellak[i, j-1].Fill = Brushes.Red;
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception hiba)
+            {
+
+            }
         }
+        private bool validLepes(int x, int y)
+        {
+            if (x > 8 || x < 0 || y > 8 || y < 0)
+                return false;
+            else
+                return true;
+        }
+        private void Refresh()
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if ((i + j) % 2 == 0)
+                        cellak[i, j].Fill = Brushes.Black;
+                    else
+                        cellak[i, j].Fill = Brushes.White;
+                    cimkek[i, j].Content = "";
+                }
+            }
+        }
+
         private void TablaGeneralas()
         {
             //táblagenerálás
@@ -39,17 +174,26 @@ namespace sakk2
                 for (int j = 0; j < 8; j++)
                 {
                     Rectangle ujCella = new Rectangle();
+                    Label ujCimke = new Label();
                     if ((i + j) % 2 == 0)
                         ujCella.Fill = Brushes.Black;
                     else
                         ujCella.Fill = Brushes.White;
                     ujCella.Stroke = Brushes.Black;
                     ujCella.Width = 40;
+                    ujCimke.VerticalAlignment = VerticalAlignment.Center;
+                    ujCimke.HorizontalAlignment = HorizontalAlignment.Center;
                     ujCella.Height = 40;
+                    ujCimke.Width = 40;
+                    ujCimke.Height = 40;
                     ujCella.Margin = new Thickness(i * 40, j * 40, 0, 0);
-                    ujCella.MouseUp += Click;
+                    ujCimke.Margin = new Thickness(i * 40, j * 40, 0, 0);
+                    ujCimke.FontSize = 36;
+                    ujCimke.MouseUp += Click;
                     cellak[i, j] = ujCella;
+                    cimkek[i, j] = ujCimke;
                     sakktabla.Children.Add(cellak[i, j]);
+                    sakktabla.Children.Add(cimkek[i, j]);
                 }
             }
             //betűk és számok generálása
@@ -85,6 +229,14 @@ namespace sakk2
                         betu.Content = 'H';
                         break;
                 }
+                betu.Width = 20;
+                betu.Height = 25;
+                szam.Width = 20;
+                szam.Height = 25;
+                szam.HorizontalAlignment = HorizontalAlignment.Left;
+                szam.VerticalAlignment = VerticalAlignment.Top;
+                betu.HorizontalAlignment = HorizontalAlignment.Left;
+                betu.VerticalAlignment = VerticalAlignment.Top;
                 szam.Margin = new Thickness(253 + 40 * i, 31, 0, 0);
                 betu.Margin = new Thickness(217, 63 + 40 * i, 0, 0);
                 scene.Children.Add(betu);
