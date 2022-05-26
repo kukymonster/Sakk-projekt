@@ -22,6 +22,7 @@ namespace sakk2
     {
         static Rectangle[,] cellak = new Rectangle[8, 8];
         static Label[,] cimkek = new Label[8, 8];
+        List<string> poziciokList = new List<string>();
         static object figura = new object();
         public MainWindow()
         {
@@ -32,6 +33,7 @@ namespace sakk2
         {
             try
             {
+                poziciokList.Clear();
                 Refresh();
                 object kuldo = sender;
                 figura = figurak.SelectedItem;
@@ -60,25 +62,31 @@ namespace sakk2
                                     cellak[k, j].Fill = Brushes.Red;
                                     cellak[i, k].Fill = Brushes.Red;
                                 }
+                                if ((i + j) % 2 == 0)
+                                    cellak[i, j].Fill = Brushes.Black;
+                                else
+                                    cellak[i, j].Fill = Brushes.White;
                             }
                             else if (figura.ToString().Contains("♗"))
                             {
-                                //javítás kell!
-                                for (int k = 0; k <= 8; k++)
+                                for (int k = 0; k < 8; k++)
                                 {
-                                    if(validLepes(i-k,j-k))
-                                        cellak[i - k, j - k].Fill = Brushes.Red;
-                                    if(validLepes(i+k,j+k))
+                                    if (validLepes(i + k, j + k))
                                         cellak[i + k, j + k].Fill = Brushes.Red;
-                                    if(validLepes(i+k,j-k))
-                                        cellak[i + k, j - k].Fill = Brushes.Red;
-                                    if(validLepes(i-k,j+k))
-                                        cellak[i - k, j + k].Fill = Brushes.Red;
+                                    if (validLepes(i - k, j - k))
+                                        cellak[i - k, j - k].Fill = Brushes.Red;
+                                    if (validLepes(i + k + 1, j - k - 1))
+                                        cellak[i + k + 1, j - k - 1].Fill = Brushes.Red;
+                                    if (validLepes(i - k - 1, j + k + 1))
+                                        cellak[i - k - 1, j + k + 1].Fill = Brushes.Red;
                                 }
+                                if ((i + j) % 2 == 0)
+                                    cellak[i, j].Fill = Brushes.Black;
+                                else
+                                    cellak[i, j].Fill = Brushes.White;
                             }
                             else if (figura.ToString().Contains("♘"))
                             {
-                                //javítás kell!
                                 if(validLepes(i + 2, j + 1))
                                     cellak[i + 2, j + 1].Fill = Brushes.Red;
                                 if (validLepes(i + 1, j + 2))
@@ -100,24 +108,26 @@ namespace sakk2
                             {
                                 for (int k = 0; k < 8; k++)
                                 {
-                                    //javítani kell!
                                     if (validLepes(k, j))
                                         cellak[k, j].Fill = Brushes.Red;
                                     if (validLepes(i,k))
                                         cellak[i, k].Fill = Brushes.Red;
-                                    if(validLepes(i + k, j-k))
-                                        cellak[i - k, j - k].Fill = Brushes.Red;
-                                    if (validLepes(i + k, j+k))
+                                    if (validLepes(i + k, j + k))
                                         cellak[i + k, j + k].Fill = Brushes.Red;
-                                    if (validLepes(i + k, j-k))
-                                        cellak[i + k, j - k].Fill = Brushes.Red;
-                                    if (validLepes(i - k, j+k))
-                                        cellak[i - k, j + k].Fill = Brushes.Red;
+                                    if (validLepes(i - k, j - k))
+                                        cellak[i - k, j - k].Fill = Brushes.Red;
+                                    if (validLepes(i + k + 1, j - k - 1))
+                                        cellak[i + k + 1, j - k - 1].Fill = Brushes.Red;
+                                    if (validLepes(i - k - 1, j + k + 1))
+                                        cellak[i - k - 1, j + k + 1].Fill = Brushes.Red;
                                 }
+                                if ((i + j) % 2 == 0)
+                                    cellak[i, j].Fill = Brushes.Black;
+                                else
+                                    cellak[i, j].Fill = Brushes.White;
                             }
                             else if (figura.ToString().Contains("♔"))
                             {
-                                //javítás kell!
                                 if (validLepes(i + 1, j))
                                     cellak[i + 1, j].Fill = Brushes.Red;
                                 if (validLepes(i + 1, j+1))
@@ -141,15 +151,39 @@ namespace sakk2
             }
             catch(Exception hiba)
             {
-
+                MessageBox.Show(hiba.ToString());
             }
         }
         private bool validLepes(int x, int y)
         {
-            if (x > 8 || x < 0 || y > 8 || y < 0)
+            if (x >= 8 || x < 0 || y >= 8 || y < 0)
                 return false;
             else
                 return true;
+        }
+        private char Decode(int yPos)
+        {
+            char eredmeny = ' ';
+            switch (yPos)
+            {
+                case 0:
+                    eredmeny = 'A'; break;
+                case 1:
+                    eredmeny = 'B'; break;
+                case 2:
+                    eredmeny = 'C'; break;
+                case 3:
+                    eredmeny = 'D'; break;
+                case 4:
+                    eredmeny = 'E'; break;
+                case 5:
+                    eredmeny = 'F'; break;
+                case 6:
+                    eredmeny = 'G'; break;
+                case 7:
+                    eredmeny = 'H'; break;
+            }
+            return eredmeny;
         }
         private void Refresh()
         {
@@ -165,7 +199,6 @@ namespace sakk2
                 }
             }
         }
-
         private void TablaGeneralas()
         {
             //táblagenerálás
