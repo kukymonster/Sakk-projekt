@@ -22,7 +22,6 @@ namespace sakk2
     {
         static Rectangle[,] cellak = new Rectangle[8, 8];
         static Label[,] cimkek = new Label[8, 8];
-        List<string> poziciokList = new List<string>();
         static object figura = new object();
         public MainWindow()
         {
@@ -33,7 +32,6 @@ namespace sakk2
         {
             try
             {
-                poziciokList.Clear();
                 Refresh();
                 object kuldo = sender;
                 figura = figurak.SelectedItem;
@@ -274,6 +272,33 @@ namespace sakk2
                 betu.Margin = new Thickness(217, 63 + 40 * i, 0, 0);
                 scene.Children.Add(betu);
                 scene.Children.Add(szam);
+            }
+        }
+
+        private void poziciokGomb_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                List<string> poziciok = new List<string>();
+                for (int i = 0; i < 8; i++)
+                {
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (cellak[i, j].Fill == Brushes.Red)
+                            poziciok.Add($"{Decode(j)}{i+1}");
+                    }
+                }
+                string kiiratas = "Lépések kordinátái: ";
+                for (int i = 0; i < poziciok.Count-1; i++)
+                {
+                    kiiratas += poziciok[i] + ", ";
+                }
+                kiiratas += poziciok.Last();
+                MessageBox.Show(kiiratas);
+            }
+            catch(Exception hiba)
+            {
+
             }
         }
     }

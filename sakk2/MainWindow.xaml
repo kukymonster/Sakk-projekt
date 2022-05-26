@@ -20,6 +20,6 @@
             <ComboBoxItem Name="kiraly" Content="&#9812;" FontSize="24" IsSelected="False"/>
         </ComboBox>
         <Label x:Name="teszt1" Content="A" HorizontalAlignment="Left" Margin="71,57,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <Button x:Name="poziciokGomb" Content="Lépsek kordinátái" HorizontalAlignment="Left" Margin="646,356,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="poziciokGomb" Content="Lépések kordinátái" HorizontalAlignment="Left" Margin="646,356,0,0" VerticalAlignment="Top" Click="poziciokGomb_Click"/>
     </Grid>
 </Window>
