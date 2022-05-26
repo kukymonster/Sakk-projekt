@@ -22,7 +22,6 @@ namespace sakk2
     {
         static Rectangle[,] cellak = new Rectangle[8, 8];
         static Label[,] cimkek = new Label[8, 8];
-        static object figura = new object();
         public MainWindow()
         {
             InitializeComponent();
@@ -34,27 +33,30 @@ namespace sakk2
             {
                 Refresh();
                 object kuldo = sender;
-                figura = figurak.SelectedItem;
                 for (int i = 0; i < 8; i++)
                 {
                     for (int j = 0; j < 8; j++)
                     {
                         if(cimkek[i,j] == kuldo)
                         {
-                            cimkek[i,j].Content = figura;
-                            teszt1.Content = figura.ToString();
-                            if(figura.ToString().Contains("♙"))
+                            if(feherParaszt.IsChecked == true)
                             {
+                                cimkek[i, j].Content = "♙";
+                                cimkek[i, j].Background = Brushes.Gray;
                                 cellak[i, j + 1].Fill = Brushes.Red;
                                 cellak[i, j + 2].Fill = Brushes.Red;
                             }
-                            else if (figura.ToString().Contains("♟"))
+                            else if (feketeParaszt.IsChecked == true)
                             {
+                                cimkek[i, j].Content = "♟";
+                                cimkek[i, j].Background = Brushes.Gray;
                                 cellak[i, j - 1].Fill = Brushes.Red;
                                 cellak[i, j - 2].Fill = Brushes.Red;
                             }
-                            else if (figura.ToString().Contains("♖"))
+                            else if (futo.IsChecked == true)
                             {
+                                cimkek[i, j].Content = "♖";
+                                cimkek[i, j].Background = Brushes.Gray;
                                 for (int k = 0; k < 8; k++)
                                 {
                                     cellak[k, j].Fill = Brushes.Red;
@@ -65,8 +67,10 @@ namespace sakk2
                                 else
                                     cellak[i, j].Fill = Brushes.White;
                             }
-                            else if (figura.ToString().Contains("♗"))
+                            else if (gyalog.IsChecked == true)
                             {
+                                cimkek[i, j].Content = "♗";
+                                cimkek[i, j].Background = Brushes.Gray;
                                 for (int k = 0; k < 8; k++)
                                 {
                                     if (validLepes(i + k, j + k))
@@ -83,9 +87,11 @@ namespace sakk2
                                 else
                                     cellak[i, j].Fill = Brushes.White;
                             }
-                            else if (figura.ToString().Contains("♘"))
+                            else if (lo.IsChecked == true)
                             {
-                                if(validLepes(i + 2, j + 1))
+                                cimkek[i, j].Content = "♘";
+                                cimkek[i, j].Background = Brushes.Gray;
+                                if (validLepes(i + 2, j + 1))
                                     cellak[i + 2, j + 1].Fill = Brushes.Red;
                                 if (validLepes(i + 1, j + 2))
                                     cellak[i + 1, j + 2].Fill = Brushes.Red;
@@ -102,10 +108,12 @@ namespace sakk2
                                 if (validLepes(i + 2, j - 1))
                                     cellak[i + 2, j - 1].Fill = Brushes.Red;
                             }
-                            else if (figura.ToString().Contains("♕"))
+                            else if (kiralyNo.IsChecked == true)
                             {
                                 for (int k = 0; k < 8; k++)
                                 {
+                                    cimkek[i, j].Content = "♛";
+                                    cimkek[i, j].Background = Brushes.Gray;
                                     if (validLepes(k, j))
                                         cellak[k, j].Fill = Brushes.Red;
                                     if (validLepes(i,k))
@@ -124,8 +132,10 @@ namespace sakk2
                                 else
                                     cellak[i, j].Fill = Brushes.White;
                             }
-                            else if (figura.ToString().Contains("♔"))
+                            else if (kiraly.IsChecked == true)
                             {
+                                cimkek[i, j].Content = "♚";
+                                cimkek[i, j].Background = Brushes.Gray;
                                 if (validLepes(i + 1, j))
                                     cellak[i + 1, j].Fill = Brushes.Red;
                                 if (validLepes(i + 1, j+1))
@@ -147,10 +157,7 @@ namespace sakk2
                     }
                 }
             }
-            catch(Exception hiba)
-            {
-                MessageBox.Show(hiba.ToString());
-            }
+            catch(Exception hiba) { }
         }
         private bool validLepes(int x, int y)
         {
@@ -194,6 +201,7 @@ namespace sakk2
                     else
                         cellak[i, j].Fill = Brushes.White;
                     cimkek[i, j].Content = "";
+                    cimkek[i, j].Background = Brushes.Transparent;
                 }
             }
         }
@@ -219,7 +227,7 @@ namespace sakk2
                     ujCimke.Height = 40;
                     ujCella.Margin = new Thickness(i * 40, j * 40, 0, 0);
                     ujCimke.Margin = new Thickness(i * 40, j * 40, 0, 0);
-                    ujCimke.FontSize = 36;
+                    ujCimke.FontSize = 26;
                     ujCimke.MouseUp += Click;
                     cellak[i, j] = ujCella;
                     cimkek[i, j] = ujCimke;
@@ -227,7 +235,6 @@ namespace sakk2
                     sakktabla.Children.Add(cimkek[i, j]);
                 }
             }
-            //betűk és számok generálása
             for (int i = 0; i < 8; i++)
             {
                 Label szam = new Label();
@@ -236,29 +243,21 @@ namespace sakk2
                 switch (i)
                 {
                     case 0:
-                        betu.Content = 'A';
-                        break;
+                        betu.Content = 'A'; break;
                     case 1:
-                        betu.Content = 'B';
-                        break;
+                        betu.Content = 'B'; break;
                     case 2:
-                        betu.Content = 'C';
-                        break;
+                        betu.Content = 'C'; break;
                     case 3:
-                        betu.Content = 'D';
-                        break;
+                        betu.Content = 'D'; break;
                     case 4:
-                        betu.Content = 'E';
-                        break;
+                        betu.Content = 'E'; break;
                     case 5:
-                        betu.Content = 'F';
-                        break;
+                        betu.Content = 'F';  break;
                     case 6:
-                        betu.Content = 'G';
-                        break;
+                        betu.Content = 'G'; break;
                     case 7:
-                        betu.Content = 'H';
-                        break;
+                        betu.Content = 'H'; break;
                 }
                 betu.Width = 20;
                 betu.Height = 25;
@@ -274,7 +273,6 @@ namespace sakk2
                 scene.Children.Add(szam);
             }
         }
-
         private void poziciokGomb_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -296,10 +294,7 @@ namespace sakk2
                 kiiratas += poziciok.Last();
                 MessageBox.Show(kiiratas);
             }
-            catch(Exception hiba)
-            {
-
-            }
+            catch(Exception hiba) { }
         }
     }
 }

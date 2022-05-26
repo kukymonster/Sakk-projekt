@@ -6,20 +6,16 @@
         xmlns:local="clr-namespace:sakk2"
         xmlns:Accessibility="clr-namespace:Accessibility;assembly=Accessibility" x:Class="sakk2.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Sakklépések Szép-Szabó Bence" Height="450" Width="800">
     <Grid x:Name="scene">
         <Canvas x:Name="sakktabla" Height="320" Width="320" Margin="240,57,240,57"/>
-        <Canvas x:Name="kiirasok" Height="320" Width="320" Margin="240,57,240,57"/>
-        <ComboBox x:Name="figurak" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Name="feherParaszt" Content="&#9817;" FontSize="24" IsSelected="False"/>
-            <ComboBoxItem Name="feketeParaszt" Content="&#9823;" FontSize="24" IsSelected="False"/>
-            <ComboBoxItem Name="futo" Content="&#9814;" FontSize="24" IsSelected="True"/>
-            <ComboBoxItem Name="lo" Content="&#9816;" FontSize="24" IsSelected="False"/>
-            <ComboBoxItem Name="gyalog" Content="&#9815;" FontSize="24" IsSelected="False"/>
-            <ComboBoxItem Name="kiralyNo" Content="&#9813;" FontSize="24" IsSelected="False"/>
-            <ComboBoxItem Name="kiraly" Content="&#9812;" FontSize="24" IsSelected="False"/>
-        </ComboBox>
-        <Label x:Name="teszt1" Content="A" HorizontalAlignment="Left" Margin="71,57,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
         <Button x:Name="poziciokGomb" Content="Lépések kordinátái" HorizontalAlignment="Left" Margin="646,356,0,0" VerticalAlignment="Top" Click="poziciokGomb_Click"/>
+        <RadioButton Name="feherParaszt" Content="&#9817;(fehér p)" HorizontalAlignment="Left" Margin="37,10,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton Name="feketeParaszt" Content="&#9823;(fekete p)" HorizontalAlignment="Left" Margin="143,10,0,0" VerticalAlignment="Top"/>
+        <RadioButton Name="futo" Content="&#9814;(bástya)" HorizontalAlignment="Left" Margin="240,10,0,0" VerticalAlignment="Top"/>
+        <RadioButton Name="lo" Content="&#9816;(lovag)" HorizontalAlignment="Left" Margin="343,10,0,0" VerticalAlignment="Top"/>
+        <RadioButton Name="gyalog" Content="&#9815;(futó)" HorizontalAlignment="Left" Margin="448,10,0,0" VerticalAlignment="Top"/>
+        <RadioButton Name="kiralyNo" Content="&#9813;(királynő)" HorizontalAlignment="Left" Margin="550,10,0,0" VerticalAlignment="Top"/>
+        <RadioButton Name="kiraly" Content="&#9812;(király)" HorizontalAlignment="Left" Margin="655,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
